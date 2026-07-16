@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>RESPEQ — Dashboard</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'><rect width='48' height='48' rx='11' fill='%231E3A8A'/><polyline points='17,13 9,24 17,35' stroke='white' stroke-width='3.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/><polyline points='31,13 39,24 31,35' stroke='white' stroke-width='3.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/><rect x='21' y='20' width='6' height='8' rx='2' fill='white'/></svg>"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+    <style>
+        body { background: #f0f4f8; font-family: 'DM Sans', sans-serif; }
+        .card { border: none; box-shadow: 0 4px 16px rgba(0,0,0,0.07); }
+        #chatBox { height: 220px; overflow-y: auto; background: #f8f9fa; border-radius: 8px; padding: 10px; }
+        .chat-widget { position: fixed; bottom: 24px; right: 24px; width: 360px; z-index: 100; }
+
+        #splash {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: #060F1E;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+        }
+        #splash-mark {
+            opacity: 0;
+            transform: scale(0.75);
+            animation: markIn 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.15s forwards;
+            filter: drop-shadow(0 0 32px rgba(56, 189, 248, 0.4));
+        }
+        @keyframes markIn { to { opacity: 1; transform: scale(1); } }
+
+        #splash-wordmark {
+            display: flex;
+            gap: 2px;
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            letter-spacing: 0.12em;
+            color: white;
+            line-height: 1;
+        }
+        #splash-wordmark span {
+            opacity: 0;
+            transform: translateY(24px);
+            animation: letterIn 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        #splash-wordmark span:nth-child(1) { animation-delay: 0.70s; }
+        #splash-wordmark span:nth-child(2) { animation-delay: 0.78s; }
+        #splash-wordmark span:nth-child(3) { animation-delay: 0.86s; }
+        #splash-wordmark span:nth-child(4) { animation-delay: 0.94s; }
+        #splash-wordmark span:nth-child(5) { animation-delay: 1.02s; }
+        #splash-wordmark span:nth-child(6) { animation-delay: 1.10s; }
+        @keyframes letterIn { to { opacity: 1; transform: translateY(0); } }
+
+        #splash-motto {
+            opacity: 0;
+            transform: translateY(12px);
+            animation: mottoIn 0.6s ease 1.5s forwards;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: rgba(148, 185, 255, 0.85);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+        @keyframes mottoIn { to { opacity: 1; transform: translateY(0); } }
+
+        #splash.fade-out { animation: splashOut 0.9s ease forwards; }
+        @keyframes splashOut { to { opacity: 0; } }
+
+        .brand-name { font-family: 'Syne', sans-serif; font-weight: 800; letter-spacing: 0.08em; font-size: 1.15rem; }
+    </style>
+</head>
+<body>
+
+<div id="splash">
+    <div id="splash-mark">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="100" height="100">
+            <defs>
+                <linearGradient id="sg" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="#1E3A8A"/>
+                    <stop offset="100%" stop-color="#38BDF8"/>
+                </linearGradient>
+            </defs>
+            <rect width="48" height="48" rx="11" fill="url(#sg)"/>
+            <polyline points="17,13 9,24 17,35" stroke="white" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <polyline points="31,13 39,24 31,35" stroke="white" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <rect x="21" y="20" width="6" height="8" rx="2" fill="white"/>
+        </svg>
+    </div>
+    <div id="splash-wordmark">
+        <span>R</span><span>E</span><span>S</span><span>P</span><span>E</span><span>Q</span>
+    </div>
+    <div id="splash-motto">RESPEQ your needs.</div>
+</div>
+
+<nav class="navbar navbar-dark bg-primary px-4">
+    <div class="d-flex align-items-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="28" height="28">
+            <defs>
+                <linearGradient id="ng" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="#1E3A8A"/>
+                    <stop offset="100%" stop-color="#38BDF8"/>
+                </linearGradient>
+            </defs>
+            <rect width="48" height="48" rx="11" fill="url(#ng)"/>
+            <polyline points="17,13 9,24 17,35" stroke="white" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <polyline points="31,13 39,24 31,35" stroke="white" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <rect x="21" y="20" width="6" height="8" rx="2" fill="white"/>
+        </svg>
+        <span class="brand-name text-white">RESPEQ</span>
+    </div>
+    <div class="d-flex gap-3 align-items-center">
+        <a href="/profile" class="text-white text-decoration-none">Profile</a>
+        <a href="/projects" class="text-white text-decoration-none">My Projects</a>
+        <form method="post" action="/logout" class="m-0">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+            <button type="submit" class="btn btn-outline-light btn-sm">Logout</button>
+        </form>
+    </div>
+</nav>
+
+<div class="container mt-5">
+    <div class="text-center mb-5">
+        <h2 class="fw-bold" style="font-family:'Syne',sans-serif;">
+            Welcome, <span class="text-primary" th:text="${currentUser.firstName}">User</span>!
+        </h2>
+        <p class="text-muted">Manage your software requirements, use cases, and CRC cards.</p>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-md-6 d-flex">
+            <div class="card p-4 w-100 d-flex flex-column">
+                <h5 class="fw-bold mb-3">My Projects</h5>
+                <div class="flex-grow-1">
+                    <p class="text-muted small" th:if="${#lists.isEmpty(projects)}">No projects yet.</p>
+                    <div th:each="p : ${projects}" style="font-size:.875rem;padding:4px 0;border-bottom:1px solid #e9ecef;">
+                        <a th:href="@{/projects/{id}/usecases(id=${p.id})}" th:text="${p.name}"
+                           class="text-decoration-none text-dark fw-semibold"></a>
+                        <span class="text-muted ms-2" th:text="${p.description}"></span>
+                    </div>
+                </div>
+                <a href="/projects" class="btn btn-primary mt-3">Go to Projects</a>
+            </div>
+        </div>
+
+        <div class="col-md-6 d-flex">
+            <div class="card p-4 w-100 d-flex flex-column">
+                <h5 class="fw-bold mb-3">My Profile</h5>
+                <div class="flex-grow-1">
+                    <p class="mb-2"><span class="text-muted">Username:</span>
+                        <strong th:text="${currentUser.username}"></strong></p>
+                    <p class="mb-2"><span class="text-muted">Name:</span>
+                        <strong th:text="${currentUser.firstName + ' ' + currentUser.lastName}"></strong></p>
+                    <p class="mb-2"><span class="text-muted">Email:</span>
+                        <strong th:text="${currentUser.email}"></strong></p>
+                </div>
+                <a href="/profile" class="btn btn-outline-primary mt-3">Edit Profile</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="chat-widget card shadow p-3">
+    <div class="d-flex justify-content-between align-items-center mb-2">
+        <h6 class="fw-bold mb-0">Assistant</h6>
+        <button onclick="toggleChat()" class="btn btn-sm btn-outline-secondary" id="toggleBtn">−</button>
+    </div>
+    <div id="chatBody">
+        <div id="chatBox" class="mb-2">
+            <p class="mb-1"><b>Bot:</b> Hello! I can help with Projects, Use Cases, CRC Cards, Profile, and navigation.</p>
+        </div>
+        <div class="d-flex gap-2">
+            <input type="text" id="userMessage" class="form-control form-control-sm" placeholder="Ask about this website..."/>
+            <button onclick="sendMessage()" class="btn btn-primary btn-sm">Send</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    (function () {
+        if (localStorage.getItem('showSplash') === '1') {
+            localStorage.removeItem('showSplash');
+            const splash = document.getElementById('splash');
+            splash.style.display = 'flex';
+            setTimeout(() => {
+                splash.classList.add('fade-out');
+                splash.addEventListener('animationend', () => { splash.style.display = 'none'; }, { once: true });
+            }, 2800);
+        }
+    })();
+
+    let chatOpen = true;
+    function toggleChat() {
+        chatOpen = !chatOpen;
+        document.getElementById('chatBody').style.display = chatOpen ? 'block' : 'none';
+        document.getElementById('toggleBtn').textContent = chatOpen ? '−' : '+';
+    }
+
+    async function sendMessage() {
+        const input = document.getElementById('userMessage');
+        const chatBox = document.getElementById('chatBox');
+        const message = input.value.trim();
+        if (!message) return;
+        chatBox.innerHTML += "<p class='mb-1'><b>You:</b> " + escapeHtml(message) + "</p>";
+        input.value = '';
+        const csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('content');
+        const csrfHeader = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
+        try {
+            const response = await fetch('/api/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json', [csrfHeader]: csrfToken },
+                body: JSON.stringify({ message, currentPage: window.location.pathname })
+            });
+            const data = response.ok ? await response.json() : null;
+            chatBox.innerHTML += "<p class='mb-1'><b>Bot:</b> " + escapeHtml(data?.reply || 'Error.') + "</p>";
+        } catch {
+            chatBox.innerHTML += "<p class='mb-1'><b>Bot:</b> Error connecting.</p>";
+        }
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    function escapeHtml(text) {
+        const d = document.createElement('div');
+        d.textContent = text;
+        return d.innerHTML;
+    }
+
+    document.getElementById('userMessage').addEventListener('keydown', e => {
+        if (e.key === 'Enter') sendMessage();
+    });
+</script>
+</body>
+</html>

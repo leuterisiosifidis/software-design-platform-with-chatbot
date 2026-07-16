@@ -1,0 +1,67 @@
+HELP.md
+
+# Maven
+target/
+.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# Spring Tool Suite / Eclipse
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings/
+.springBeans
+.sts4-cache
+
+# IntelliJ IDEA
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# NetBeans
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+# Visual Studio Code
+.vscode/
+
+/bin/
+
+# Local secrets
+.env
+.env.*
+src/main/resources/application-local.properties
+
+# Logs
+*.log
+logs/
+
+# Generated reports
+docx_render_report_check/
+
+# Temporary Microsoft Office files
+~$*.docx
+~$*.xlsx
+~$*.pptx
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Private project reports
+/sprint_report_chatbot.txt
+/sprintreport2.docx
+/~$*.docx
+/docx_render_report_check/
+
+# Other private documentation
+/private-reports/
