@@ -38,8 +38,8 @@ generate diagrams and use an AI assistant powered through the Groq API.
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/leuterisiosifidis/chatbot-database-web-application.git
-cd chatbot-database-web-application
+git clone https://github.com/leuterisiosifidis/software-design-platform-with-chatbot.git
+cd software-design-platform-with-chatbot
 ```
 
 ### 2. Configure the environment variables
