@@ -110,3 +110,106 @@ src/main/resources/templates/
 ## Academic Context
 
 This project was developed as part of the MYY803 Software Engineering course at the University of Ioannina.
+
+## Screenshots
+
+### Dashboard
+
+<p align="center">
+  <a href="docs/screenshots/dashboard.png">
+    <img
+      src="docs/screenshots/dashboard.png"
+      alt="Application dashboard"
+      width="900"
+    >
+  </a>
+</p>
+
+<p align="center">
+  <em>Main dashboard for viewing and managing software projects.</em>
+</p>
+
+### Software Design Features
+
+<table>
+  <tr>
+    <td width="50%" align="center">
+      <a href="docs/screenshots/projects.png">
+        <img
+          src="docs/screenshots/projects.png"
+          alt="Projects page"
+          width="100%"
+        >
+      </a>
+    </td>
+    <td width="50%" align="center">
+      <a href="docs/screenshots/use-cases.png">
+        <img
+          src="docs/screenshots/use-cases.png"
+          alt="Use cases page"
+          width="100%"
+        >
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <strong>Project Management</strong><br>
+      Create and organize software projects.
+    </td>
+    <td align="center">
+      <strong>Use Cases</strong><br>
+      Document system actors, flows and requirements.
+    </td>
+  </tr>
+</table>
+
+### CRC Cards
+
+<p align="center">
+  <a href="docs/screenshots/crc-cards.png">
+    <img
+      src="docs/screenshots/crc-cards.png"
+      alt="CRC card management page"
+      width="800"
+    >
+  </a>
+</p>
+
+<p align="center">
+  <em>Create and manage classes, responsibilities and collaborators.</em>
+</p>
+
+<details>
+  <summary><strong>Authentication screens</strong></summary>
+
+  <br>
+
+  <table>
+    <tr>
+      <td width="50%" align="center">
+        <a href="docs/screenshots/login.png">
+          <img
+            src="docs/screenshots/login.png"
+            alt="Login page"
+            width="100%"
+          >
+        </a>
+      </td>
+      <td width="50%" align="center">
+        <a href="docs/screenshots/register.png">
+          <img
+            src="docs/screenshots/register.png"
+            alt="Registration page"
+            width="100%"
+          >
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td align="center"><strong>Login</strong></td>
+      <td align="center"><strong>Registration</strong></td>
+    </tr>
+  </table>
+
+</details>
