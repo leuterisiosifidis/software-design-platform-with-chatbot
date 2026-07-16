@@ -34,7 +34,8 @@ build/
 # Visual Studio Code
 .vscode/
 
-/bin/
+# Compiled output
+bin/
 
 # Local secrets
 .env
