@@ -1,13 +1,12 @@
-# Software Design Platform with a chatbot
+# Software Design Platform with Chatbot
 
-A Spring Boot web application for managing software projects, use
-cases, CRC cards and diagrams. Users can create projects, document use cases, manage CRC cards, 
-generate diagrams and use an AI assistant powered through the Groq API.
+A Spring Boot web application for managing software projects, use cases, CRC cards, and diagrams.
 
+Users can create projects, document use cases, manage CRC cards, generate diagrams, and use a context-aware AI assistant powered through the Groq API.
 
 ## Features
 
-- User registration, login and profile management
+- User registration, login, and profile management
 - Create and manage software projects
 - Document and edit use cases
 - Create and manage CRC cards
@@ -15,21 +14,15 @@ generate diagrams and use an AI assistant powered through the Groq API.
 - AI assistant with page context
 - Persistent storage with MySQL
 
-## Technologies
+## Quick Start
+
+### Requirements
 
 - Java 17
-- Spring Boot
-- Spring MVC
-- Spring Security
-- Spring Data JPA
-- Thymeleaf
 - MySQL
-- Groq API
-- Maven
+- A Groq API key
 
-  ## Local Setup
-
-## Quick Start
+### Windows PowerShell
 
 ```powershell
 $env:DB_USERNAME="root"
@@ -37,12 +30,13 @@ $env:DB_PASSWORD="your_mysql_password"
 $env:GROQ_API_KEY="your_groq_api_key"
 
 .\mvnw.cmd spring-boot:run
+```
 
-### Requirements
+Open:
 
-- Java 17
-- MySQL
-- A Groq API key
+```text
+http://localhost:8081
+```
 
 ### 1. Clone the repository
 
