@@ -1,7 +1,7 @@
 # Software Design Platform with a chatbot
 
 A Spring Boot web application for managing software projects, use
-cases, CRC cards and diagrams.Users can create projects, document use cases, manage CRC cards, 
+cases, CRC cards and diagrams. Users can create projects, document use cases, manage CRC cards, 
 generate diagrams and use an AI assistant powered through the Groq API.
 
 
