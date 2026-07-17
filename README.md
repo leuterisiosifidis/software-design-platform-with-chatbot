@@ -29,6 +29,15 @@ generate diagrams and use an AI assistant powered through the Groq API.
 
   ## Local Setup
 
+## Quick Start
+
+```powershell
+$env:DB_USERNAME="root"
+$env:DB_PASSWORD="your_mysql_password"
+$env:GROQ_API_KEY="your_groq_api_key"
+
+.\mvnw.cmd spring-boot:run
+
 ### Requirements
 
 - Java 17
