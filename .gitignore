@@ -1,41 +1,26 @@
-HELP.md
-
-# Maven
+# Maven and compiled output
 target/
-.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
+*.class
+bin/
+src/bin/
 
-# Spring Tool Suite / Eclipse
-.apt_generated
+# Spring Tool Suite and Eclipse
+.apt_generated/
 .classpath
 .factorypath
 .project
 .settings/
 .springBeans
-.sts4-cache
+.sts4-cache/
 
 # IntelliJ IDEA
 .idea/
-*.iws
 *.iml
+*.iws
 *.ipr
-
-# NetBeans
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
 
 # Visual Studio Code
 .vscode/
-
-# Compiled output
-bin/
 
 # Local secrets
 .env
@@ -46,23 +31,16 @@ src/main/resources/application-local.properties
 *.log
 logs/
 
-# Generated reports
+# Private reports and generated documents
+HELP.md
 docx_render_report_check/
-
-# Temporary Microsoft Office files
+private-reports/
+sprint_report_chatbot.txt
+sprintreport2.docx
 ~$*.docx
 ~$*.xlsx
 ~$*.pptx
 
-# Operating system files
+# Operating-system files
 .DS_Store
 Thumbs.db
-
-# Private project reports
-/sprint_report_chatbot.txt
-/sprintreport2.docx
-/~$*.docx
-/docx_render_report_check/
-
-# Other private documentation
-/private-reports/
